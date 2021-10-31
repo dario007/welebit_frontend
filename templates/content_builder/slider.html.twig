@@ -1,0 +1,84 @@
+<div class="row mt-3">
+    <div class="col">
+        <div class="slider_builder">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row flex-row">
+                        <div class="col">
+                            <div class="row slider_functions">
+                                <div class="add_slide"><i class="fas fa-plus"></i></div>
+
+                                <nav>
+                                    <ul class="pagination slider_pagination">
+                                        {#                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>#}
+                                        <li class="page-item"><a class="page-link" disabled="" data-slide="1">1</a></li>
+{#                                        <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+{#                                        <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+                                        {#                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>#}
+                                    </ul>
+                                </nav>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" id="slider_body">
+                    <div class="row slide_content mt-3">
+                        {% include 'content_builder/slide.html.twig' %}
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    $(".add_slide").click(function () {
+
+        $(this).closest('.slider_builder').find('.card-body').append( jQuery('<div class="row slide_content mt-3">').load('/content_builder/slide') );
+        initDragulaSlider();
+
+        var slide_counter = $('.slide_content').length;
+        $(this).next().find('.slider_pagination').append('<li class="page-item"><a class="page-link" disabled="" data-slide="'+slide_counter+'">'+slide_counter+'</a></li>');
+
+        $('.page-link').click(function (){
+            var index_value = $(this).data('slide');
+            $('.slide_content').hide();
+            $(".slide_content").eq(index_value-1).show();
+        });
+
+        $('.slider_file').on('change', function(){
+            readURL(this, $(this));
+        });
+
+
+        //preview image and video
+        function readURL(input, input_element) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    input_element.closest('.row').find("img").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    });
+
+
+    function initDragulaSlider() {
+        dragula([slider_body]);
+    }
+
+
+</script>
+
