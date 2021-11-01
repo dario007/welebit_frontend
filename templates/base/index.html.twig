@@ -7,13 +7,11 @@
     {% for builder_elements in content %}
         {% for key,element_values in builder_elements %}
             {% if key == 'slider' %}
-                {% include 'content_builder/update/slider.html.twig' %}
+                {% include 'content_builder/slider.html.twig' %}
             {% endif %}
 
             {% if key == 'text' %}
-
-                <div>here</div>
-                {% include 'content_builder/update/text.html.twig' %}
+                {% include 'content_builder/text.html.twig' %}
             {% endif %}
         {% endfor %}
     {% endfor %}

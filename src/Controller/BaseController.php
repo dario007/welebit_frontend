@@ -12,12 +12,14 @@ class BaseController extends AbstractController
      */
     public function index($page_name) {
 
-        $url = "http://system.dev/api/page/".$page_name;
+        $url = "http://www.welebit.backend/api/page/".$page_name;
 
        $content = json_decode($this->getContent('test', $url, 'test'), true);
 
-       echo '<pre>';
-       var_dump($content);
+//       echo '<pre>';
+//       var_dump(json_decode($content[0]['content'], true));
+
+        $content = json_decode($content[0]['content'], true);
 
         return $this->render('base/index.html.twig', [
             'controller_name' => 'BaseController',

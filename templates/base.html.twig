@@ -3,58 +3,65 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/assets/jQueryMultiselect/css/multi-select.css">
-        <script src="https://kit.fontawesome.com/16e570d518.js" crossorigin="anonymous"></script>
 
-        {% block stylesheets %}{% endblock %}
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
 
+            <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/assets/jQueryMultiselect/css/multi-select.css">
+            <link rel="stylesheet" href="/assets/css/custom.css">
+            <script src="https://kit.fontawesome.com/16e570d518.js" crossorigin="anonymous"></script>
+        {% block stylesheets %} {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
     </head>
     <body>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-        <a class="navbar-brand" href="#">Navbar w/ text</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-      Navbar text with an inline element
-    </span>
-        </div>
-        </div>
-    </nav>
-</header>
-<br>
+    {% block navigation %}
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="#">Navbar w/ text</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                        </ul>
+                        <span class="navbar-text">
+                         {% if app.user %}
+                             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                         {% endif %}
+      </span>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <br>
+    {% endblock %}
+    <div class="container-fluid">
 
-<div class="container-fluid">
+        {% block body %}{% endblock %}
+    </div>
 
-    {% block body %}{% endblock %}
 
-    {% block right_sidebar %}{% endblock %}
 
-</div>
+
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/popper.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="/assets/jQueryMultiselect/js/jquery.multi-select.js"></script>
         <script src="/assets/js/multiselect.js"></script>
-
-        {% block javascripts %}{% endblock %}
     </body>
 </html>
-
-
