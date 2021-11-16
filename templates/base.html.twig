@@ -1,67 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {# Run `composer require symfony/webpack-encore-bundle`
+    {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
 
-            <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/assets/jQueryMultiselect/css/multi-select.css">
-            <link rel="stylesheet" href="/assets/css/custom.css">
-            <script src="https://kit.fontawesome.com/16e570d518.js" crossorigin="anonymous"></script>
-        {% block stylesheets %} {% endblock %}
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/jQueryMultiselect/css/multi-select.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <script src="https://kit.fontawesome.com/16e570d518.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    {% block stylesheets %} {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+<body>
 
-    {% block navigation %}
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container">
-                    <a class="navbar-brand" href="#">Navbar w/ text</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Features</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
-                            </li>
-                        </ul>
-                        <span class="navbar-text">
+{% block navigation %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Navbar w/ text</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
                          {% if app.user %}
                              You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                          {% endif %}
       </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <br>
+{% endblock %}
+<div class="container-fluid">
+
+    {% block body %}{% endblock %}
+</div>
+
+<footer class="footer" style="background-color: #f8f9fa!important; height: 300px">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+                <div class="row mt-3">
+                    <div class="col-sm">
+                        One of three columns
+                    </div>
+                    <div class="col-sm">
+                        One of three columns
+                    </div>
+                    <div class="col-sm">
+                        One of three columns
                     </div>
                 </div>
-            </nav>
-        </header>
-        <br>
-    {% endblock %}
-    <div class="container-fluid">
-
-        {% block body %}{% endblock %}
+            </div>
+        </div>
     </div>
+</footer>
 
 
-
-
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/popper.min.js"></script>
-        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/assets/jQueryMultiselect/js/jquery.multi-select.js"></script>
-        <script src="/assets/js/multiselect.js"></script>
-    </body>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/jQueryMultiselect/js/jquery.multi-select.js"></script>
+<script src="/assets/js/multiselect.js"></script>
+</body>
 </html>

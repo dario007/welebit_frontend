@@ -21,6 +21,9 @@ class BaseController extends AbstractController
 
         $content = json_decode($content[0]['content'], true);
 
+//        echo '<pre>';
+//        var_dump($content);
+
         return $this->render('base/index.html.twig', [
             'controller_name' => 'BaseController',
             'content' => $content

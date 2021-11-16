@@ -13,6 +13,15 @@
             {% if key == 'text' %}
                 {% include 'content_builder/text.html.twig' %}
             {% endif %}
+
+            {% if key == 'user' %}
+                {% include 'content_builder/user.html.twig' %}
+            {% endif %}
+
+            {% if key == 'order' %}
+                {% include 'content_builder/order.html.twig' %}
+            {% endif %}
+
         {% endfor %}
     {% endfor %}
 
